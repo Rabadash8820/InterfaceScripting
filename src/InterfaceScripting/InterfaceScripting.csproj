@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <UnityVersion>2019.1.14f1</UnityVersion>
+    <UnityAssetsDir>$(SolutionDir)\..\$(SolutionName)\Assets</UnityAssetsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Unity3D" Version="1.2.0" />
+  </ItemGroup>
+
+  <Target Name="CopyOutputs" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <ProjectOutput Include="$(OutDir)/$(ProjectName).dll;$(OutDir)/$(ProjectName).pdb" />
+    </ItemGroup>
+    <Message Importance="high" Text="Moving $(ProjectName) outputs into appropriate subfolders of '$([System.IO.Path]::GetFullPath($(UnityAssetsDir)))'" />
+    <Copy SourceFiles="%(ProjectOutput.Identity)" DestinationFolder="$(UnityAssetsDir)\$(SolutionName)\Plugins" />
+  </Target>
+
+</Project>
