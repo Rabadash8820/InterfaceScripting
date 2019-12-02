@@ -4,10 +4,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <UnityVersion>2019.1.14f1</UnityVersion>
     <UnityAssetsDir>$(SolutionDir)\..\$(SolutionName)\Assets</UnityAssetsDir>
+    <SirenixAssembliesDir>$(UnityAssetsDir)/Plugins/Sirenix/Assemblies</SirenixAssembliesDir>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Unity3D" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="$(SirenixAssembliesDir)/Sirenix.OdinInspector.Attributes.dll" Private="false" />
   </ItemGroup>
 
   <Target Name="CopyOutputs" AfterTargets="AfterBuild">
