@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="$(UnityInstallRoot)/$(UnityVersion)/$(UnityEngineUIPath)" Private="false" />
     <Reference Include="$(SirenixAssembliesDir)/Sirenix.OdinInspector.Attributes.dll" Private="false" />
   </ItemGroup>
 

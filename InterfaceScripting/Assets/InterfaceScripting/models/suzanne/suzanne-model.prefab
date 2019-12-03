@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &919737538661442502
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5702101338603164732, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_Name
+      value: suzanne-model
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338704197585, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_Name
+      value: suzanne-mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338704197591, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2222346464153789849, guid: da5d7b6bad63f69418bacad93612d199,
+        type: 3}
+    - target: {fileID: 5702101338704197584, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a1fa0507813086f40a37acf398b76a60, type: 2}
+    - target: {fileID: 5702101338603164723, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: Slug
+      value: suzanne
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164723, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: DisplayName
+      value: Suzanne (Monkey from Blender)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f216f3a929e3c7d47a93ea610348ccca, type: 3}
