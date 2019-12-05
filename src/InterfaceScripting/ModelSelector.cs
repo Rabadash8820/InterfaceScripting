@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace InterfaceScripting {
 
@@ -11,6 +11,8 @@ namespace InterfaceScripting {
         public Camera Camera;
         [Tooltip("When selected, models will change to this color, then back when deselected.")]
         public Color SelectedColor = Color.white;
+        public UnityEvent Selected = new UnityEvent();
+        public UnityEvent Deselected = new UnityEvent();
 
         private void Awake() {
             this.AssertAssociation(Camera, nameof(Camera));
@@ -18,13 +20,11 @@ namespace InterfaceScripting {
 
         public GameObject SelectedModel { get; private set; }
 
-        public void TrySelectModel(Vector3 mousePosition)
-        {
+        public GameObject GetModelUnderMouse(Vector3 mousePosition) {
             bool hit = Physics.Raycast(Camera.ScreenPointToRay(mousePosition), out RaycastHit hitInfo);
-            if (hit) {
-                GameObject model = hitInfo.collider.gameObject;
-                SelectModel(model);
-            }
+            if (hit)
+                return hitInfo.collider.gameObject;
+            return null;
         }
         public void SelectModel(GameObject model)
         {
@@ -39,6 +39,8 @@ namespace InterfaceScripting {
                 _renderer.material.color = SelectedColor;
 
             this.LogModelSelected(model);
+
+            Selected.Invoke();
         }
         public void DeselectModel() {
             GameObject oldModel = SelectedModel;
@@ -51,6 +53,8 @@ namespace InterfaceScripting {
             SelectedModel = null;
 
             this.LogModelDeselected(oldModel);
+
+            Deselected.Invoke();
         }
 
     }

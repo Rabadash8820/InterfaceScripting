@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace InterfaceScripting {
 
     public class ModelTransformer : MonoBehaviour {
 
+        private bool _hovering = false;
+
         public InputProvider InputProvider;
         public ModelSelector ModelSelector;
         public TransformMenuManager TransformMenuManager;
+
+        [Header("Hover events")]
+        public UnityEvent ModelHoverEnter = new UnityEvent();
+        public UnityEvent ModelHoverExit = new UnityEvent();
 
         [Header("Transform Managers")]
         public ModelMover ModelMover;
@@ -24,12 +31,29 @@ namespace InterfaceScripting {
         }
         private void Update() {
             bool primaryDown = InputProvider.MousePrimaryButtonDown;
+            Vector3 mousePos = InputProvider.MousePosition;
 
-            if (ModelSelector.SelectedModel == null && primaryDown) {
-                ModelSelector.TrySelectModel(InputProvider.MousePosition);
-                return;
+            GameObject modelUnderMouse = null;
+            if (ModelSelector.SelectedModel == null) {
+                // Raise events for when we enter/exit the state of hovering over a model
+                modelUnderMouse = ModelSelector.GetModelUnderMouse(mousePos);
+                if (modelUnderMouse != null && !_hovering) {
+                    _hovering = true;
+                    ModelHoverEnter.Invoke();
+                }
+                else if (modelUnderMouse == null && _hovering) {
+                    _hovering = false;
+                    ModelHoverExit.Invoke();
+                }
+
+                // If the hovered-over model is clicked, then select it
+                if (_hovering && primaryDown) {
+                    ModelSelector.SelectModel(modelUnderMouse);
+                    return;
+                }
             }
 
+            // If user clicks while a model is selected, then end any transformations and deselect it
             if (ModelSelector.SelectedModel != null && primaryDown) {
                 switch (TransformMenuManager.TransformState) {
                     case TransformState.Moving: ModelMover.EndMove(); break;
@@ -40,6 +64,7 @@ namespace InterfaceScripting {
                 return;
             }
 
+            // Otherwise, continue updating the transformation
             switch (TransformMenuManager.TransformState) {
                 case TransformState.Moving: ModelMover.TryMove(); break;
                 case TransformState.Rotating: ModelRotater.TryRotate(); break;
