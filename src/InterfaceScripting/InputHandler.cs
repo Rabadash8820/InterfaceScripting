@@ -8,28 +8,41 @@ namespace InterfaceScripting {
         public TransformMenuManager TransformMenuManager;
 
         private void Awake() {
-            string typeName = GetType().Name;
-            Assert.IsNotNull(ModelManager, $"{typeName} {name} must be associated with a {nameof(ModelManager)}");
-            Assert.IsNotNull(TransformMenuManager, $"{typeName} {name} must be associated with a {nameof(TransformMenuManager)}");
+            this.AssertAssociation(ModelManager, nameof(ModelManager));
+            this.AssertAssociation(TransformMenuManager, nameof(TransformMenuManager));
         }
         private void Update() {
-            bool primary = Input.GetMouseButtonDown(0);
+            bool primaryDown = Input.GetMouseButtonDown(0);
+            bool primaryUp = Input.GetMouseButtonUp(0);
             Vector3 mousePos = Input.mousePosition;
+            GameObject model = ModelManager.SelectedModel;
 
-            if (ModelManager.SelectedModel == null) {
-                if (primary)
-                    ModelManager.TrySelectModel(mousePos);
+            if (model == null) {
+                if (primaryDown)
+                    ModelManager.TrySelectModel(mousePos, TransformMenuManager.TransformState);
             }
-            else {
-                if (primary)
+
+            else if (TransformMenuManager.TransformState == TransformState.Moving) {
+                if (primaryDown) {
+                    this.LogModelMoved(model, model.transform.position);
                     ModelManager.ReleaseModel();
+                }
                 else
                     ModelManager.MoveModel(mousePos);
             }
 
-            bool secondary = Input.GetMouseButtonDown(1);
-            bool middle = Input.GetMouseButtonDown(2);
+            else if (TransformMenuManager.TransformState == TransformState.Rotating) {
 
+            }
+
+            else if (TransformMenuManager.TransformState == TransformState.Scaling) {
+                if (primaryDown) {
+                    this.LogModelScaled(model, model.transform.localScale.x);
+                    ModelManager.ReleaseModel();
+                }
+                else
+                    ModelManager.ScaleModel(mousePos);
+            }
         }
     }
 }

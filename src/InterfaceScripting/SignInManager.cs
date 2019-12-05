@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 namespace InterfaceScripting {
@@ -13,15 +12,12 @@ namespace InterfaceScripting {
         private string _currEmail;
         private readonly IDictionary<string, byte[]> _pwdHashes = new Dictionary<string, byte[]>();
 
-        public Logger Logger;
         public CredentialCollection ValidCredentials;
         public UnityEvent SignedIn = new UnityEvent();
         public UnityEvent NotSignedIn = new UnityEvent();
 
         private void Awake() {
-            string typeName = GetType().Name;
-            Assert.IsNotNull(Logger, $"{typeName} {name} must be associated with a {nameof(Logger)}");
-            Assert.IsNotNull(ValidCredentials, $"{typeName} {name} must be associated with a {nameof(ValidCredentials)}");
+            this.AssertAssociation(ValidCredentials, nameof(ValidCredentials));
 
             for (int c = 0; c < ValidCredentials.Credentials.Length; ++c) {
                 Credential cred = ValidCredentials.Credentials[c];
@@ -44,7 +40,7 @@ namespace InterfaceScripting {
 
             if (authenticated) {
                 _currEmail = email;
-                Logger.LogSignedIn(_currEmail);
+                this.LogSignedIn(_currEmail);
             }
 
             (authenticated ? SignedIn : NotSignedIn).Invoke();
@@ -53,7 +49,7 @@ namespace InterfaceScripting {
             if (_currEmail == null)
                 return;
 
-            Logger.LogSignedOut(_currEmail);
+            this.LogSignedOut(_currEmail);
 
             _currEmail = null;
         }
