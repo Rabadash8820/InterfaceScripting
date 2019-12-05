@@ -14,12 +14,14 @@ namespace InterfaceScripting {
             log(component, $"Transform menu state changed to {newState}");
         public static void LogModelAdded(this MonoBehaviour component, string prefabName) =>
             log(component, $"Added model using prefab '{prefabName}'");
-        public static void LogModelSelected(this MonoBehaviour component, GameObject model, TransformState transformState) =>
-            log(component, $"Selected model '{model.name}' for {transformState}");
+        public static void LogModelSelected(this MonoBehaviour component, GameObject model) =>
+            log(component, $"Selected model '{model.name}'");
         public static void LogModelDeselected(this MonoBehaviour component, GameObject model) =>
             log(component, $"Deselected model '{model.name}'");
         public static void LogModelMoved(this MonoBehaviour component, GameObject model, Vector3 newPosition) =>
             log(component, $"Moved model '{model.name}' to {newPosition}");
+        public static void LogModelRotated(this MonoBehaviour component, GameObject model, float xDegrees, float yDegrees) =>
+            log(component, $"Rotated model '{model.name}' {xDegrees}° in x-direction, {yDegrees}° in y-direction");
         public static void LogModelScaled(this MonoBehaviour component, GameObject model, float newScale) =>
             log(component, $"Scaled model '{model.name}' to {newScale}");
 

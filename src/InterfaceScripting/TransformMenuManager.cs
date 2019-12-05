@@ -14,14 +14,23 @@ namespace InterfaceScripting {
         private bool _awoken = false;
         private Button _currBtn;
 
-        public Button MoveButton;
-        public Button RotateButton;
-        public Button ScaleButton;
+        public InputProvider InputProvider;
+        public ModelSelector ModelSelector;
+
+        [Space]
         public TransformState StartingState = TransformState.Moving;
         [Tooltip("Whenever a transformation button is toggled on, it will change to this color.")]
         public Color ActiveButtonColor = Color.yellow;
 
+        [Header("Buttons")]
+        public Button MoveButton;
+        public Button RotateButton;
+        public Button ScaleButton;
+
         private void Awake() {
+            this.AssertAssociation(InputProvider, nameof(InputProvider));
+            this.AssertAssociation(ModelSelector, nameof(ModelSelector));
+
             this.AssertAssociation(MoveButton, nameof(MoveButton));
             this.AssertAssociation(RotateButton, nameof(RotateButton));
             this.AssertAssociation(ScaleButton, nameof(ScaleButton));
