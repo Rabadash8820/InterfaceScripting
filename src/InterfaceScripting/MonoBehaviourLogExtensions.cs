@@ -20,12 +20,13 @@ namespace InterfaceScripting {
             log(component, $"Deselected model '{model.name}'");
         public static void LogModelMoved(this MonoBehaviour component, GameObject model, Vector3 newPosition) =>
             log(component, $"Moved model '{model.name}' to {newPosition}");
-        public static void LogModelRotated(this MonoBehaviour component, GameObject model, float xDegrees, float yDegrees) =>
-            log(component, $"Rotated model '{model.name}' {xDegrees}° in x-direction, {yDegrees}° in y-direction");
+        public static void LogModelRotated(this MonoBehaviour component, GameObject model, Quaternion newRotation) =>
+            log(component, $"Rotated model '{model.name}' to {newRotation.eulerAngles}");
         public static void LogModelScaled(this MonoBehaviour component, GameObject model, float newScale) =>
             log(component, $"Scaled model '{model.name}' to {newScale}");
 
 
-        private static void log(MonoBehaviour component, string message) => Debug.Log($"Frame {Time.frameCount} | {component.GetType().Name} '{component.name}' | {message}");
+        private static void log(MonoBehaviour component, string message) =>
+            Debug.Log($"Frame {Time.frameCount} | {component.GetType().Name} '{component.name}' | {message}");
     }
 }
