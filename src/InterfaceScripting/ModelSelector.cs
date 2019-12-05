@@ -5,9 +5,12 @@ namespace InterfaceScripting {
 
     public class ModelSelector : MonoBehaviour
     {
-        private readonly IList<GameObject> _models = new List<GameObject>();
+        private Color? _origColor;
+        private MeshRenderer _renderer;
 
         public Camera Camera;
+        [Tooltip("When selected, models will change to this color, then back when deselected.")]
+        public Color SelectedColor = Color.white;
 
         private void Awake() {
             this.AssertAssociation(Camera, nameof(Camera));
@@ -26,16 +29,24 @@ namespace InterfaceScripting {
         public void SelectModel(GameObject model)
         {
             if (SelectedModel != null && model != SelectedModel)
-                ReleaseModel();
+                DeselectModel();
 
             SelectedModel = model;
 
+            _renderer = model.GetComponentInChildren<MeshRenderer>();
+            _origColor = _renderer?.material?.color;
+            if (_renderer != null && _renderer.material != null)
+                _renderer.material.color = SelectedColor;
+
             this.LogModelSelected(model);
         }
-        public void ReleaseModel() {
+        public void DeselectModel() {
             GameObject oldModel = SelectedModel;
             if (oldModel == null)
                 return;
+
+            if (_renderer != null && _origColor.HasValue)
+                _renderer.material.color = _origColor.Value;
 
             SelectedModel = null;
 

@@ -36,7 +36,7 @@ namespace InterfaceScripting {
                     case TransformState.Rotating: ModelRotater.EndRotate(); break;
                     case TransformState.Scaling: ModelScaler.EndScale(); break;
                 }
-                ModelSelector.ReleaseModel();
+                ModelSelector.DeselectModel();
                 return;
             }
 
