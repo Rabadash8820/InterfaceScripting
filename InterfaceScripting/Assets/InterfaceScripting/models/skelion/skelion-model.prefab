@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!64 &-6084979425892164732
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324158846891439251}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2746755530506326859, guid: b5f7679b21e2fd2429e8593502111fcb, type: 3}
 --- !u!1001 &1792997810277392559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14,17 +28,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
         type: 3}
-      propertyPath: m_LocalPosition.x
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
         type: 3}
-      propertyPath: m_LocalPosition.y
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
         type: 3}
-      propertyPath: m_LocalPosition.z
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
@@ -49,22 +68,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
         type: 3}
-      propertyPath: m_RootOrder
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5702101338603164722, guid: f216f3a929e3c7d47a93ea610348ccca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702101338704197585, guid: f216f3a929e3c7d47a93ea610348ccca,
@@ -95,3 +109,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f216f3a929e3c7d47a93ea610348ccca, type: 3}
+--- !u!1 &6324158846891439251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5702101338603164732, guid: f216f3a929e3c7d47a93ea610348ccca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1792997810277392559}
+  m_PrefabAsset: {fileID: 0}
