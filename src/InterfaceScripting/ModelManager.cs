@@ -23,8 +23,6 @@ namespace InterfaceScripting {
         public Rect ViewportRect;
 
         [Header("Transformations")]
-        [Tooltip("While scaling models, the amount by which the model scales will be this factor of the distance moved by the mouse.")]
-        public float MouseScaleFactor;
         [Tooltip("While rotating models, the amount by which the model rotates will be this factor of the distance moved by the mouse.")]
         public float MouseRotateFactor;
         [Tooltip("While scaling models, this LineRender will be used as a visual aid for the user, connecting their cursor to the geometric center of the model.")]
@@ -40,7 +38,6 @@ namespace InterfaceScripting {
             ModelNameFormatString = "{0}-{1}";
             ViewportRect = new Rect(Vector2.zero, Vector2.one);
 
-            MouseScaleFactor = 1f;
             MouseRotateFactor = 1f;
             ScaleLineRenderer = null;
             ScaleLineDistance = 0.01f;
@@ -115,7 +112,7 @@ namespace InterfaceScripting {
             }
 
             float currScaleDist = Vector3.Distance(_modelScreenPos, mousePosition);
-            SelectedModel.transform.localScale = MouseScaleFactor * _origScale * currScaleDist / _origScaleDist * Vector3.one;
+            SelectedModel.transform.localScale = _origScale * currScaleDist / _origScaleDist * Vector3.one;
             Vector3 scaleLineEndPos = Camera.ScreenToWorldPoint(mousePosition);
             scaleLineEndPos.z = ScaleLineDistance - SpawnDistance;
             ScaleLineRenderer?.SetPosition(1, scaleLineEndPos);
