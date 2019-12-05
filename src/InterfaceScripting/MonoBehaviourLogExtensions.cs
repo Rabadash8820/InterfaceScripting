@@ -10,8 +10,8 @@ namespace InterfaceScripting {
             log(component, $"User with email '{email}' signed in");
         public static void LogSignedOut(this MonoBehaviour component, string email) =>
             log(component, $"User with email '{email}' signed out");
-        public static void LogTransformMenuStateChanged(this MonoBehaviour component, TransformState oldState, TransformState newState) =>
-            log(component, $"Transform menu state changed from {oldState} to {newState}");
+        public static void LogTransformMenuStateChanged(this MonoBehaviour component, TransformState newState) =>
+            log(component, $"Transform menu state changed to {newState}");
         public static void LogModelAdded(this MonoBehaviour component, string prefabName) =>
             log(component, $"Added model using prefab '{prefabName}'");
         public static void LogModelSelected(this MonoBehaviour component, GameObject model, TransformState transformState) =>

@@ -11,6 +11,7 @@ namespace InterfaceScripting {
 
     public class TransformMenuManager : MonoBehaviour {
 
+        private bool _awoken = false;
         private Button _currBtn;
 
         public Button MoveButton;
@@ -31,7 +32,11 @@ namespace InterfaceScripting {
             MoveButton.onClick.AddListener(() => toggle(MoveButton, TransformState.Moving));
             RotateButton.onClick.AddListener(() => toggle(RotateButton, TransformState.Rotating));
             ScaleButton.onClick.AddListener(() => toggle(ScaleButton, TransformState.Scaling));
+
+            _awoken = true;
         }
+
+        public TransformState TransformState { get; private set; }
 
         public void ToggleMoving() => toggle(MoveButton, TransformState.Moving);
         public void ToggleRotating() => toggle(RotateButton, TransformState.Rotating);
@@ -44,17 +49,16 @@ namespace InterfaceScripting {
             }
         }
         private void toggle(Button button, TransformState newState) {
-            TransformState oldState = TransformState;
+            if (newState == TransformState && _awoken)
+                return;
 
             _currBtn.image.color = Color.white;
             _currBtn = button;
             _currBtn.image.color = ActiveButtonColor;
             TransformState = newState;
 
-            this.LogTransformMenuStateChanged(oldState, newState);
+            this.LogTransformMenuStateChanged(newState);
         }
-
-        public TransformState TransformState { get; private set; } = TransformState.Moving;
 
     }
 }
